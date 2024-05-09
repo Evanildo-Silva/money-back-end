@@ -9,6 +9,8 @@ export class createUserController {
     @UsePipes(ValidationPipe)
     @Post()
     async createUser(@Body() createUser: CreateUserInputDto) {
-        return this.createUserService.execute(createUser)
+        const newUser = await this.createUserService.execute(createUser)
+
+        return newUser
     }
 }
