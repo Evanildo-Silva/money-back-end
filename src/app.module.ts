@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { CategoryModule } from './category/category.module';
 import { UserModule } from './user/user.module';
 
 @Module({
@@ -19,7 +20,8 @@ import { UserModule } from './user/user.module';
       migrations: [`${__dirname}/migrations/{.ts,*.js}`],
       migrationsRun: true,
     }),
-    UserModule],
+    UserModule,
+    CategoryModule],
   controllers: [],
   providers: [],
 })
