@@ -6,7 +6,9 @@ import { CreateUserService } from './user.service';
 @ApiTags('Users')
 @Controller('user')
 export class createUserController {
-    constructor(private readonly createUserService: CreateUserService) { }
+    constructor(
+        private readonly createUserService: CreateUserService
+    ) { }
 
     @UsePipes(ValidationPipe)
     @Post()
