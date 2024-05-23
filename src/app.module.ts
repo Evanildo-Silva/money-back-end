@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { CategoryModule } from './category/category.module';
+import { ExpensesModule } from './expenses/expenses.module';
 import { UserModule } from './user/user.module';
 
 @Module({
@@ -22,7 +23,8 @@ import { UserModule } from './user/user.module';
     }),
     UserModule,
     AuthModule,
-    CategoryModule],
+    CategoryModule,
+    ExpensesModule,],
   controllers: [],
   providers: [],
 })
