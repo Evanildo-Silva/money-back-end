@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { ExpenseEntity } from "src/expenses/entity/expenses.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("category")
 export class CategoryEntity {
@@ -10,4 +11,7 @@ export class CategoryEntity {
 
     @Column({ name: 'icon_name', nullable: false })
     iconName: string;
+
+    @OneToMany(() => ExpenseEntity, (expense) => expense.category)
+    expenses: ExpenseEntity[];
 }
