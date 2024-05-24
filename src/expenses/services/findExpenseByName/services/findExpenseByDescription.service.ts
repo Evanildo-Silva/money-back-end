@@ -3,7 +3,7 @@ import { FindExpenseByDescriptionInputDto } from "../dto/findExpenseByDescriptio
 import { FindExpenseByDescriptionRepository } from "../repository/findExpenseByDescription.repository";
 
 @Injectable()
-export class FindExpenseByDescription {
+export class FindExpenseByDescriptionService {
     constructor(
         private readonly findExpenseByDescriptionRepository: FindExpenseByDescriptionRepository
     ) { }
