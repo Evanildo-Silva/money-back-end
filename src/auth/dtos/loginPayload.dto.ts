@@ -1,6 +1,3 @@
-import { IsString } from "class-validator";
+import { UserEntity } from "src/user/entities/user.entity";
 
-export abstract class LoginPayloadDto {
-    @IsString()
-    public id: string;
-}
+export class LoginPayloadDto extends UserEntity { }
