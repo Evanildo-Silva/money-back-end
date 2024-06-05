@@ -6,6 +6,8 @@ import { CreateExpensesRepository } from "./createExpense/repository/createExpen
 import { CreateExpensesService } from "./createExpense/services/createExpenses.service";
 import { FindExpenseByDescriptionRepository } from "./findExpenseByDescription/repository/findExpenseByDescription.repository";
 import { FindExpenseByDescriptionService } from "./findExpenseByDescription/services/findExpenseByDescription.service";
+import { ListExpensesRepository } from "./listExpenses/repository/listExpenses.repository";
+import { ListExpensesService } from "./listExpenses/services/listExpenses.service";
 import { UpdateExpenseRepository } from "./updateExpense/repository/updateExpense.repository";
 import { UpdateExpenseService } from "./updateExpense/service/updateexpense.service";
 
@@ -16,9 +18,11 @@ import { UpdateExpenseService } from "./updateExpense/service/updateexpense.serv
         CreateExpensesService,
         FindExpenseByDescriptionService,
         UpdateExpenseService,
+        ListExpensesService,
         CreateExpensesRepository,
         FindExpenseByDescriptionRepository,
-        UpdateExpenseRepository
+        UpdateExpenseRepository,
+        ListExpensesRepository
     ],
 })
 export class ExpensesServicesModule { }
