@@ -1,7 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { ExpenseEntity } from "src/expenses/entity/expenses.entity";
-import { Repository } from "typeorm";
+import { Equal, Repository } from "typeorm";
+import { ListExpensesInputDto } from "../dto/listExpensesInput.dto";
 import { ListExpensesRepositoryInterface } from "../interface/repository.interface";
 
 @Injectable()
@@ -11,8 +12,12 @@ export class ListExpensesRepository implements ListExpensesRepositoryInterface {
         private readonly expenseRepository: Repository<ExpenseEntity>
     ) { }
 
-    public async listAllExpenses(): Promise<ExpenseEntity[]> {
-        const listExpenses = await this.expenseRepository.find()
+    public async listAllExpenses({ user_id }: ListExpensesInputDto): Promise<ExpenseEntity[]> {
+        const listExpenses = await this.expenseRepository.find({
+            where: {
+                user: { id: Equal(user_id) }
+            }
+        })
 
         return listExpenses
     }

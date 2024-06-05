@@ -5,6 +5,9 @@ import { CreateExpensesService } from 'src/expenses/services/createExpense/servi
 import { ExpenseEntity } from '../entity/expenses.entity';
 import { FindExpenseByDescriptionInputDto } from '../services/findExpenseByDescription/dto/findExpenseByDescription.dto';
 import { FindExpenseByDescriptionService } from '../services/findExpenseByDescription/services/findExpenseByDescription.service';
+import { ListExpensesInputDto } from '../services/listExpenses/dto/listExpensesInput.dto';
+import { ListExpensesOutputDto } from '../services/listExpenses/dto/listExpensesOutput.dto';
+import { ListExpensesService } from '../services/listExpenses/services/listExpenses.service';
 import { UpdateExpenseInputDto } from '../services/updateExpense/dto/updateExpenseInput.dto';
 import { UpdateExpenseOutputDto } from '../services/updateExpense/dto/updateExpenseOutput.dto';
 import { UpdateExpenseService } from '../services/updateExpense/service/updateexpense.service';
@@ -16,6 +19,7 @@ export class ExpensesController {
         private readonly createExpenseService: CreateExpensesService,
         private readonly findExpenseByDescriptionService: FindExpenseByDescriptionService,
         private readonly updateExpenseService: UpdateExpenseService,
+        private readonly listExpenseService: ListExpensesService,
     ) { }
 
     @UsePipes(ValidationPipe)
@@ -42,6 +46,15 @@ export class ExpensesController {
         const updatedExpense = await this.updateExpenseService.execute(expense)
 
         return updatedExpense
+    }
+
+    @UsePipes(ValidationPipe)
+    @ApiResponse({ type: [ListExpensesOutputDto] })
+    @Get()
+    async listExpenses(@Query() { user_id }: ListExpensesInputDto): Promise<ExpenseEntity[]> {
+        const listExpenses = await this.listExpenseService.execute({ user_id })
+
+        return listExpenses
     }
 
 }

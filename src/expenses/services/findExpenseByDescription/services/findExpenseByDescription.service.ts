@@ -1,4 +1,4 @@
-import { HttpException, Injectable } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { FindExpenseByDescriptionInputDto } from "../dto/findExpenseByDescription.dto";
 import { FindExpenseByDescriptionRepository } from "../repository/findExpenseByDescription.repository";
 
@@ -9,15 +9,16 @@ export class FindExpenseByDescriptionService {
     ) { }
 
     public async execute({ description }: FindExpenseByDescriptionInputDto) {
-        const expense = await this.findExpenseByDescriptionRepository.findExpenseByDescription({ description })
+        try {
+            const expense = await this.findExpenseByDescriptionRepository.findExpenseByDescription({ description })
 
-        if (!expense) {
+            return expense
+        } catch (error) {
             throw new HttpException(
-                'Erro ao buscar despesa do usuário',
-                500,
+                'Ocorreu um erro ao localizar despesa.',
+                HttpStatus.INTERNAL_SERVER_ERROR,
             );
         }
 
-        return expense
     }
 }
