@@ -13,7 +13,7 @@ export class FindExpenseByDescriptionService {
 
         if (!expense) {
             throw new HttpException(
-                'Erro ao buscar pedidos de exames do usuário',
+                'Erro ao buscar despesa do usuário',
                 500,
             );
         }
